@@ -37,24 +37,24 @@ As well as the structure of the database.
 
 
 4. When the user signs up:
-    - Create a dictionary called user that contains the inputs as keys and values.
+    - Create a dictionary called user that contains the inputs' name as keys and and the inputs as values.
     - Add the user to the `database` through the child `Users` adding him through his uid (retrieve it through login_session).
 
 
-5. Create a form in `home.html` to add a tweet to the database:
+5. Create a form in `add_tweet.html` to add a tweet to the database:
     - The form should contain:
         - `Title`.
         - `Text`- It should take a maximum of 280 letters.
-        - `Image link` - This should be optional (We'll set this feature up later)
+        - **Don't forget to add action and method**
 
 
 6. When the user submits a tweet:
-    - Create a dictionary called `tweet` that contains the inputs as keys and values.
+    - Create a dictionary called `tweet` that contains the inputs' name as keys and the inputs as values.
     - In the dictionary add a key named `uid` and the value as the uid of the user that wrote the tweet.
-    - Add the tweet using the child `Tweets` to the `database` with a random key.
+    - Add the tweet using the child `Tweets` to the `database` with a random key (the push method).
 
         
-7. Create an html page called tweets.html:
+7. Create an html page called tweets.html & a route called `/all_tweets`:
     - in this html page display all the tweets that were written:
         - Go to the child `Tweets` and use get().val()
         
@@ -81,6 +81,6 @@ If not, make sure your code is pushed.
     - It should add 1 like to a specific `tweet`, everytime a like button has been clicked using the database.   
     
 ##### Great job on completing the bonus problems section!  
-###### Make sure your code is saved in Repl.it or on your machine!
+###### Make sure your code is pushed to GitHub!
 
 
