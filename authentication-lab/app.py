@@ -17,7 +17,7 @@ config = {
   "appId": "1:883793147528:web:8151bfd6c196e1badad13d",
 
   "measurementId": "G-NM1BS96RRV",
-  "databaseURL": "https://project-6517378840567117056-default-rtdb.firebaseio.com/"}
+  "databaseURL": "https://project-6517378840567117056-default-rtdb.firebaseio.com/  "}
 
 firebase=pyrebase.initialize_app(config)
 auth=firebase.auth()
@@ -29,7 +29,7 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'super-secret-key'
 
 
-@app.route('/signin', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def signin():
     error = ""
     if request.method == 'POST':
@@ -61,16 +61,19 @@ def signup():
 
 @app.route('/add_tweet', methods=['GET', 'POST'])
 def add_tweet():
-    if request.method=='post':
+    if request.method=='POST':
         title=request.form['title']
         text=request.form['text']
         try:
             tweet={"title":title,"text":text}
             db.child("tweets").push(tweet)
+            return redirect(url_for('all_tweets'))
         except:
             pass
-    return render_template("add_tweet.html")
+    return render_template("add_tweet.html") 
 
-
+@app.route('/all_tweets', methods=['GET', 'POST'])
+def all_tweets():
+    return render_template("tweet.html", tweets=db.child('tweets').get().val().values())
 if __name__ == '__main__':
     app.run(debug=True)
